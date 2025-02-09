@@ -1,0 +1,37 @@
+Before installing Java, you can check if it is already installed on your system by typing:
+
+java -version
+Copy
+
+If Java is not installed on your system, the output of the command above will tell you that the command java is not found. Otherwise, it will print the installed Java version.
+
+When installing new packages, you should always first refresh the local packages index by running the following commands as a user with sudo privileges or root:
+
+sudo apt update
+Copy
+At the time of writing, there are four long-term supported (LTS) versions of Java: 8, 11, 17, and 21. The default Java development and runtime in Ubuntu 22.04 is set to Java 17, meaning you will get Java 17 installed on your system if you install the default-jre package.
+
+
+Execute the following command to install OpenJDK version 17:
+
+sudo apt install openjdk-17-jdk
+sudo apt install maven
+Copy
+If you want to install another version, replace the version number in the command above. For example, if your application requres Java 11, install the openjdk-11-jdk package.
+Once the installation is complete, you can verify it by checking the Java version:
+
+java -version
+Copy
+The output should look something like this:
+
+
+openjdk version "17.0.8.1" 2023-08-24
+OpenJDK Runtime Environment (build 17.0.8.1+1-Ubuntu-0ubuntu122.04)
+OpenJDK 64-Bit Server VM (build 17.0.8.1+1-Ubuntu-0ubuntu122.04, mixed mode, sharing)
+Copy
+That’s it! You have successfully installed Java on your Ubuntu machine.
+
+JRE is included in the JDK package. If you need only JRE, install the openjdk-17-jre package. For minimal Java runtime, install the openjdk-17-jdk-headless package.
+
+
+
