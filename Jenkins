@@ -1,0 +1,57 @@
+1.  First, install Java on the server by using the instructions below.
+
+apt-get update
+apt install openjdk-11-jdk
+2. To confirm the installation, check the Java version. After executing the command, the output looks something like this.
+
+java --version
+3.  Add Jenkins repository using commands below
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]  https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+4. After adding Jenkins repository, update apt packages list using below command
+
+apt update
+5. After installing Jenkins on the server, start and enable it.
+
+apt install jenkins
+systemctl start jenkins
+systemctl enable jenkins
+6. To confirm installation, check the status to ensure. Now run the command, and the output shown as below.
+
+systemctl status jenkins
+Jenkins installation
+7. To reach jenkins from a browser, configure firewall using below commands and Check the status of ufw to ensure the activation of rules added.
+
+ufw allow 8080
+ufw allow ssh
+ufw enable
+ufw status
+8. After configuring the firewall, the next step is to set up Jenkins. For thi, open a browser and run http://100.24.34.65:8080 where 100.24.34.65 is the server’s IP address. m
+
+Unlock Jenkins page will shown as below;
+
+Unlock jenkins page
+9. As per the instruction for getting admin password to unlock, use cat command as follows
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
+The designated column will receive a copy and paste of the initial admin password, which is a 32-character alphanumeric string.
+
+10. After it will open a customised Jenkins page. Installing plugins is demonstrated below.
+
+Customize Jenkins
+Click one to proceed and install the plugins.
+
+11. As shown, installing plugins prompts the user to create the administrator user.
+
+create first Admin user
+After filling the required fields,click “Save and continue”.
+
+12. In the next step, you need to setup the url where the Jenkins will get configured to run. Enter domain name or ip address with port 8080 and click “Save and Finish” as shown.
+
+ Instance configuration
+13. Now you will get a confirmation message and Click Start using Jenkins. After completing all the steps above, its dashboard will be open and can start your jobs using this tool as shown below.
+
+Jenkins dashboard
+Now we have successfully installed Jenkins on Ubuntu 22.04.
