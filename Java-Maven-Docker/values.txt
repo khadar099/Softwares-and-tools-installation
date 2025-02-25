@@ -1,1 +1,64 @@
-we r iadl alermadf lkajsldja r
+##To install Java 11, Maven, and Docker on Ubuntu, follow these steps:
+
+#1. Install Java 11
+Java 11 is an LTS (Long-Term Support) version, and it can be installed from the default Ubuntu repository.
+Step 1: Update your package repository
+sudo apt update
+Step 2: Install Java 11
+Install the OpenJDK 11 package:
+sudo apt install openjdk-11-jdk
+Step 3: Verify the Java installation
+Check if Java 11 is installed correctly:
+java -version
+You should see output similar to:
+openjdk version "11.0.11" 2021-04-20
+OpenJDK Runtime Environment (build 11.0.11+9-post-Ubuntu-0ubuntu2.1)
+OpenJDK 64-Bit Server VM (build 11.0.11+9-post-Ubuntu-0ubuntu2.1, mixed mode, sharing)
+Step 4: Set Java 11 as the default (if needed)
+If you have multiple versions of Java installed, you can set Java 11 as the default:
+sudo update-alternatives --config java
+Select the option corresponding to Java 11.
+
+##2. Install Maven
+Maven is a build automation tool used primarily for Java projects.
+Step 1: Update your package repository
+sudo apt update
+Step 2: Install Maven
+Install Maven from the Ubuntu repository:
+sudo apt install maven
+Step 3: Verify the Maven installation
+Check if Maven is installed correctly:
+mvn -version
+You should see output similar to:
+Apache Maven 3.6.3
+Maven home: /usr/share/maven
+Java version: 11.0.11, vendor: Ubuntu, runtime: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.8.0-53-generic", arch: "amd64", family: "unix"
+
+##3. Install Docker
+Docker is a platform used to develop, ship, and run applications inside containers.
+Step 1: Update your package repository
+sudo apt update
+Step 2: Install dependencies
+Before installing Docker, you need to install some dependencies for Docker to function properly:
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+Step 3: Add Docker’s official GPG key
+This ensures the packages you install come from Docker’s official repository.
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+Step 4: Add the Docker repository
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Step 5: Update your package repository again
+sudo apt update
+Step 6: Install Docker
+Install Docker from the Docker repository:
+sudo apt install docker-ce
+Step 7: Verify the Docker installation
+Check if Docker is installed and running:
+sudo docker --version
+You should see output similar to:
+Docker version 20.10.7, build f0df350
+Step 8: Enable and start Docker service
+Enable Docker to start on boot and start the Docker service:
+sudo systemctl enable docker
+sudo systemctl start docker
