@@ -1,24 +1,13 @@
 #!/bin/bash
 
-# Update system
-echo "Updating system..."
-sudo apt update && sudo apt upgrade -y
-
-# Install Java (Jenkins requires Java 11 or newer)
-echo "Installing OpenJDK 11..."
-sudo apt install -y openjdk-11-jdk
-
-# Verify Java installation
-echo "Verifying Java installation..."
-java -version
-
 # Add Jenkins repository key
-echo "Adding Jenkins repository key..."
-wget -q -O - https://pkg.jenkins.io/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-key.asc
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
 # Add Jenkins repository
-echo "Adding Jenkins repository..."
-echo "deb [signed-by=/usr/share/keyrings/jenkins-key.asc] https://pkg.jenkins.io/debian/ stable main" | sudo tee /etc/apt/sources.list.d/jenkins.list
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
 
 # Update package list to include Jenkins
 echo "Updating package list..."
