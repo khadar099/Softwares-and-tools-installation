@@ -12,13 +12,7 @@ sudo apt install -y openjdk-17-jdk
 
 # Verify Java Installation
 echo "Java 17 Installation Verification..."
-java -version
-
-# Set JAVA_HOME environment variable
-echo "Setting JAVA_HOME environment variable..."
-echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.bashrc
-echo "export PATH=\$PATH:\$JAVA_HOME/bin" >> ~/.bashrc
-source ~/.bashrc
+java --version
 
 # Install Maven
 echo "Installing Maven..."
@@ -26,10 +20,12 @@ sudo apt install -y maven
 
 # Verify Maven Installation
 echo "Maven Installation Verification..."
-mvn -version
+mvn -v
 
 # Install Docker
 echo "Installing Docker..."
+#install required packages
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 # Add Docker's official GPG key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -50,9 +46,5 @@ sudo systemctl enable docker
 echo "Docker Installation Verification..."
 docker --version
 
-# Add current user to Docker group (optional, to run docker without sudo)
-sudo usermod -aG docker $USER
-echo "User added to docker group. You may need to log out and log back in to use docker without sudo."
-
 # Final message
-echo "Installation of Java 17, Maven, and Docker is complete!"
+echo "Installation of Java 17, Maven, and Docker is completed!"
